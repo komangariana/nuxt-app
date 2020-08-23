@@ -1,21 +1,3 @@
 <template>
-  <div>
-    <input type="text" v-model="userId" />
-    <button @click="clickButton">Go</button>
-  </div>
+  <p>Placeholder for users page</p>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      userId: ''
-    }
-  },
-  methods: {
-    clickButton () {
-      this.$router.push('/users/' + this.userId)
-    }
-  },
-}
-</script>
