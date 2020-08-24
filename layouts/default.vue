@@ -1,16 +1,15 @@
 <template>
   <div>
-    <Header />
     <Nuxt />
   </div>
 </template>
 
-<script>
-import Header from '~/components/Header'
-
-export default {
-  components: {
-    Header,
+<style>
+  html {
+    font-family: 'Lato', sans-serif;
   }
-}
-</script>
+
+  body {
+    margin: 0;
+  }
+</style>
