@@ -4,27 +4,37 @@
       <h1>Get latest tech news!</h1>
     </section>
     <section class="featured-posts">
-      <nuxt-link :to="'/posts/' + 1" class="post-preview">
-        <article>
-          <div class="post-thumbnail" style="background-image: url('https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg')"></div>
-          <div class="post-content">
-            <h1>Post Title 1</h1>
-            <p>Preview Text Post 1</p>
-          </div>
-        </article>
-      </nuxt-link>
-      <nuxt-link :to="'/posts/' + 2" class="post-preview">
-        <article>
-          <div class="post-thumbnail" style="background-image: url('https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg')"></div>
-          <div class="post-content">
-            <h1>Post Title 2</h1>
-            <p>Preview Text Post 2</p>
-          </div>
-        </article>
-      </nuxt-link>
+      <PostPreview
+        id="1"
+        thumbnail="https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg"
+        title="Example Post 1"
+        previewText="This is the preview text 1"
+      />
+      <PostPreview
+        id="2"
+        thumbnail="https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg"
+        title="Example Post 2"
+        previewText="This is the preview text 2"
+      />
+      <PostPreview
+        id="3"
+        thumbnail="https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg"
+        title="Example Post 3"
+        previewText="This is the preview text 3"
+      />
     </section>
   </div>
 </template>
+
+<script>
+import PostPreview from '@/components/Posts/PostPreview'
+
+export default {
+  components: {
+    PostPreview,
+  }  
+}
+</script>
 
 <style scoped>
 .intro {
@@ -64,41 +74,5 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90%;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
-}
-
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>
