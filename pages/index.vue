@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get latest tech news!</h1>
     </section>
-    <PostList/>
+    <PostList :posts="loadedPosts"/>
   </div>
 </template>
 
@@ -15,7 +15,25 @@ export default {
   components: {
     PostPreview,
     PostList,
-  }  
+  },
+  data () {
+    return {
+      loadedPosts: [
+        { 
+          id: '1',
+          title: 'First Title',
+          thumbnail: 'https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg',
+          previewText: 'Preview Text 1'
+        },
+        { 
+          id: '2',
+          title: 'Second Title',
+          thumbnail: 'https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg',
+          previewText: 'Preview Text 2'
+        },
+      ]
+    }
+  }
 }
 </script>
 
