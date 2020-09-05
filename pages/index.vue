@@ -16,30 +16,10 @@ export default {
     PostPreview,
     PostList,
   },
-  data () {
-    return {
-      loadedPosts: [],
+  computed: {
+    loadedPosts () {
+      return this.$store.getters.loadedPosts
     }
-  },
-  asyncData (context, callback) {
-    setTimeout(() => {
-      callback(null, { 
-        loadedPosts: [
-          { 
-            id: '1',
-            title: 'First Title',
-            thumbnail: 'https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg',
-            previewText: 'Preview Text 1'
-          },
-          { 
-            id: '2',
-            title: 'Second Title',
-            thumbnail: 'https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg',
-            previewText: 'Preview Text 2'
-          },
-        ]
-      })
-    }, 1500)
   },
 }
 </script>
