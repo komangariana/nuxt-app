@@ -8,22 +8,25 @@
 
 <script>
 import AdminPostForm from "@/components/Admin/AdminPostForm"
+import axios from 'axios'
 
 export default {
   layout: 'admin',
   components: {
     AdminPostForm,
   },
-  data () {
-    return {
-      loadedPost: {
-        author: 'Komang',
-        title: 'Example Post Title',
-        content: 'Example Post Content',
-        thumbnailLink:  'https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg',
-      }
-    }
-  },
+  asyncData(context) {
+    return axios
+      .get(
+        'https://nuxt-blog-komang.firebaseio.com/posts/' + context.params.postId + '.json'
+      )
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(e => context.error());
+  }
 }
 </script>
 

@@ -15,21 +15,17 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: { 
-          id: '1',
-          title: 'First Title [ID: ' + context.route.params.id + ']',
-          author: 'Komang',
-          updatedDate: new Date(),
-          thumbnail: 'https://s27389.pcdn.co/wp-content/uploads/2019/10/retail-innovation-changing-tech-consumer-employee-demands-1024x440.jpeg',
-          previewText: 'Preview Text 1',
-          content: 'This is only a dummy content.',
-        },
+  asyncData(context) {
+    return axios.get('https://nuxt-blog-komang.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
       })
-    }, 1000)
+      .catch(e => console.error(e))
   },
 }
 </script>
