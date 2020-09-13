@@ -59,8 +59,11 @@ export default {
   */
   build: {
   },
-
   env: {
     baseUrl: process.env.BASE_URL || 'https://nuxt-blog-komang.firebaseio.com'
-  }
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
+  },
 }
