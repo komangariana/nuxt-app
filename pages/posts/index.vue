@@ -16,6 +16,9 @@ export default {
       return this.$store.getters.loadedPosts
     }
   },
+  head: {
+    title: 'List Posts Page'
+  }
 }
 </script>
 

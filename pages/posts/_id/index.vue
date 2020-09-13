@@ -27,6 +27,9 @@ export default {
       })
       .catch(e => console.error(e))
   },
+  head: {
+    title: 'Detail Post Page'
+  }
 }
 </script>
 
