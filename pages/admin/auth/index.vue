@@ -28,19 +28,14 @@ export default {
   },
   methods: {
     onSubmit () {
-      const { email, password } = this
-      let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
-      if (this.isLogin) {
-        authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
-      }
-      authUrl += process.env.firebaseAPIKey
-      this.$axios.$post(authUrl, {
+      const { email, password, isLogin } = this
+      this.$store.dispatch('authenticateUser', {
         email,
         password,
-        returnSecureToken: true,
-      }).then(result => {
-        console.log(result)
-      }).catch(e => console.log(e))
+        isLogin
+      }).then(() => {
+        this.$router.push('/admin')
+      })
     }
   },
 }

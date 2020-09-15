@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedPosts: []
+      loadedPosts: [],
+      token: null
     },
     mutations: {
       setPosts(state, posts) {
@@ -15,6 +16,9 @@ const createStore = () => {
       editPost(state, editedPost) {
         const postIndex = state.loadedPosts.findIndex(post => post.id === editedPost.id)
         state.loadedPosts[postIndex] = editedPost
+      },
+      setToken(state, token) {
+        state.token = token
       }
     },
     actions: {
@@ -38,7 +42,7 @@ const createStore = () => {
           ...post,
           updatedDate: new Date()
         }
-        this.$axios.$post('/posts.json', createdPost)
+        this.$axios.$post('/posts.json?auth=' + vuexContext.state.token, createdPost)
           .then((data) => {
             vuexContext.commit('addPost', { ...createdPost, id: data.name })
             this.$router.push('/admin')
@@ -46,12 +50,27 @@ const createStore = () => {
           .catch((e) => console.log(e))
       },
       editPost(vuexContext, editedPost) {
-        this.$axios.$put('/posts/' + editedPost.id + '.json', editedPost)
+        this.$axios.$put('/posts/' + editedPost.id + '.json?auth=' + vuexContext.state.token, editedPost)
         .then((result) => {
-          vuexContext.commit('editPost', editPost)
+          vuexContext.commit('editPost', editedPost)
         })
         .catch((e) => console.log(e))
       },
+      authenticateUser(vuexContext, authData) {
+        const { email, password, isLogin } = authData
+        let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
+        if (isLogin) {
+          authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
+        }
+        authUrl += process.env.firebaseAPIKey
+        return this.$axios.$post(authUrl, {
+          email,
+          password,
+          returnSecureToken: true,
+        }).then(result => {
+          vuexContext.commit('setToken', result.idToken)
+        }).catch(e => console.log(e))
+      }
     },
     getters: {
       loadedPosts(state) {
