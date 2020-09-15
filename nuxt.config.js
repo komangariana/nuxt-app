@@ -66,7 +66,8 @@ export default {
   build: {
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-komang.firebaseio.com'
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-komang.firebaseio.com',
+    firebaseAPIKey: 'AIzaSyBUCT1q9-Va77wbzvpkhOz1LS-oOY7Qoqg'
   },
   transition: {
     name: 'fade',
