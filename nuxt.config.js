@@ -54,7 +54,11 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+  axios: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-komang.firebaseio.com'
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
